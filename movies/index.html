@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>卢夕安</title>
+<title>我的观影 | 卢夕安</title>
 <meta name="description" content="温故而知新" />
 <link rel="shortcut icon" href="https://xie-zhiyan.github.io/favicon.ico">
 <link rel="stylesheet" href="https://xie-zhiyan.github.io/styles/main.css">
@@ -14,6 +14,9 @@
 <script src="https://xie-zhiyan.github.io/media/js/view-image.min.js"></script>
 <script src="https://xie-zhiyan.github.io/media/js/jquery.magnific-popup.min.js"></script>
 <script src="https://xie-zhiyan.github.io/media/js/functions.js"></script>
+    <meta name="referrer" content="never">
+    <link rel="stylesheet" href="https://xie-zhiyan.github.io/media/js/Bmdb.min.css">
+    <script type='text/javascript' src='https://xie-zhiyan.github.io/media/js/Bmdb.min.js'></script>
   </head>
   <body>
     <!-- start: #wrapper -->
@@ -33,7 +36,7 @@
 
             <nav class="main-nav grid-container grid-parent">
               <ul id="menu-header" class="menu gradient-effect">
-                <li class="current-menu-item"><a href="https://xie-zhiyan.github.io" class="menu">首页</a></li>
+                <li class=""><a href="https://xie-zhiyan.github.io" class="menu">首页</a></li>
                 
                   <li class="" >
                     <a href="/" class="menu">
@@ -91,79 +94,13 @@
         </div>
       </div>
 
-      <main id="home" class="main">
+      <main id="friends" class="main fullcover no-sidebar content">
         <div class="grid-container module-wrapper enable-masonry aos-init aos-animate" data-aos="fade-up">
-        <div class="row">
-          <div class="content-wrapper grid-posts content">
-                
-            <!-- start: .articles -->
-            
-              
-              
-              <div class="articles columns-3">
-                
-              <article class="default grid-33 tablet-grid-50 mobile-grid-100 np-mobile post type-post status-publish format-standard has-post-thumbnail hentry">
-                <div class="article-wrapper">
-                  <header>
-                    <div class="post-format-image post-format-wrapper">
-                      <div class="featured-image">
-                        <a href="https://xie-zhiyan.github.io/post/hello-gridea/" class="thumb hover-effect">
-                          <span class="fullimage cover" role="img" aria-label="" style="background-image: url('https://xie-zhiyan.github.io/post-images/hello-gridea.png');"></span>
-                        </a>
-                        
-                        <div class="tags absolute">
-                          <a href="https://xie-zhiyan.github.io/tag/kssqR9F0y/" class="ctag ctag-0 ctag-kssqR9F0y">Gridea</a>
-                        </div>
-                        
-                      </div>
-                    </div>                    
-                    <div class="meta">
-                      <time datetime="2018-12-12"><i class="fa fa-calendar"></i><span class="lately">1 年前</span></time>
-                      <div class="clear"></div>
-                    </div>
-
-                    <h1 class="title main-title gradient-effect"><a href="https://xie-zhiyan.github.io/post/hello-gridea/">Hello Gridea</a></h1>
-                  </header>
-
-                  <div class="post-excerpt">
-                      <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-
-                    <div class="clear"></div>
-                  </div>
-
-                  <footer class="author-meta">
-                    <a href="" class="author" title="">
-                      <span class="author-image cover" style="background-image: url('https://xie-zhiyan.github.io/images/avatar.png');"></span>
-                      <span class="author-name">卢夕安</span>
-                    </a>
-                    
-                    <div class="clear"></div>
-                  </footer>
-                  <div class="border"></div>       
-                </div>
-              </article>
-                
-              
-              
-              <div class="clear"></div>
-              <div class="separator last hide-on-tablet hide-on-mobile"></div>
-            </div>
-            <!-- end: .articles -->
-            
-                        <div class="epcl-pagination section">
-              <div class="nav">
-                
-                
-              </div>
-            </div>
-
-            
-          </div>
-          </div>
+        <div class="epcl-page-wrapper">
+          <div class="section-content" style="margin-top:3em;"></div>
+        </div>
         </div>
       </main>
-
         <footer id="footer" class="grid-container">
         <div class="widgets row gradient-effect">
             <div class="default-sidebar border-effect">
@@ -266,6 +203,15 @@
 
         
 
+    <script>
+    new Bmdb({
+      type: 'movies',
+      selector: '.section-content',
+      secret: '0bba46738324c778ad2da662837c14d2c1e5bceb22e3729febc9fd3677bdcea5',
+      noMoreText: '没有更多数据了',
+      limit: 30
+    })
+    </script>
     </div>
     <!-- end: #wrapper -->
   </body>
