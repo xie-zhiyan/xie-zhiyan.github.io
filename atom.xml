@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xie-zhiyan.github.io</id>
     <title>卢夕安</title>
-    <updated>2020-03-15T13:47:40.472Z</updated>
+    <updated>2020-03-18T05:17:50.464Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xie-zhiyan.github.io"/>
     <link rel="self" href="https://xie-zhiyan.github.io/atom.xml"/>
@@ -10,6 +10,118 @@
     <logo>https://xie-zhiyan.github.io/images/avatar.png</logo>
     <icon>https://xie-zhiyan.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 卢夕安</rights>
+    <entry>
+        <title type="html"><![CDATA[第一篇博客]]></title>
+        <id>https://xie-zhiyan.github.io/post/di-yi-pian-bo-ke/</id>
+        <link href="https://xie-zhiyan.github.io/post/di-yi-pian-bo-ke/">
+        </link>
+        <updated>2020-03-18T05:16:24.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="mybatis简介">MyBatis简介</h3>
+<ol>
+<li>Mybtis是支持定制化SQL、存储过程以及高级映射的优秀的持久层框架</li>
+<li>Mybatis避免了几乎所有的JDBC代码和手动设置参数以及获取结果集</li>
+<li>MyBatis可以使用简单的XML或注解用于配置和原始映射，将接口和Java的POJO映射成数据库中的数据</li>
+<li>半自动ORM框架，下载Mybatis需要到Gethub</li>
+</ol>
+<h3 id="mybatis与现有持有化技术的对比">MyBatis与现有持有化技术的对比</h3>
+<ul>
+<li>JDBC
+<ol>
+<li>SQL夹在Java代码块中，耦合度高导致硬编码内伤</li>
+<li>维护不易且实际开发需求中sql是有变化，频繁修改的情况多见</li>
+</ol>
+</li>
+<li>MyBatis
+<ol>
+<li>对开发人员而言，核心sql还是需要自己优化</li>
+<li>sql和java编码分开，功能边界清晰，一个专注于业务，一个专注于数据</li>
+</ol>
+</li>
+<li>Hibernate和JPA
+<ol>
+<li>长度复杂SQL,对于Hibernate而言处理也不容易</li>
+<li>内部自动产生的SQL,不容易做特殊优化</li>
+<li>基于全映射的自动框架，大量字段的POJO进行部分映射时比较困难，导致数据库性能下降</li>
+</ol>
+</li>
+</ul>
+<p>Mybatis.xml配置文件</p>
+<p>文件结构如下：</p>
+<ul>
+<li>
+<p>configuration配置</p>
+   <?xml version="1.0" encoding="UTF-8"?>
+  <!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  <configuration>
+  	<properties resource="jdbc.properties">
+  		<!-- 启用properties的标签的占位符: -->
+  		<property name="org.apache.ibatis.parsing.PropertyParser.enable-default-value" value="true"/> <!-- 启用默认值特性 -->
+  	</properties>
+<pre><code>  &lt;!--引入log4j--&gt;
+  &lt;settings&gt;
+  	&lt;setting name=&quot;logImpl&quot; value=&quot;LOG4J&quot;/&gt;
+  &lt;/settings&gt;
+  
+  &lt;environments default=&quot;development&quot;&gt;
+  	&lt;environment id=&quot;development&quot;&gt;
+  		&lt;transactionManager type=&quot;JDBC&quot;&gt;&lt;/transactionManager&gt;
+  		&lt;dataSource type=&quot;POOLED&quot;&gt;
+  			&lt;property name=&quot;driver&quot; value=&quot;${jdbc.driver}&quot;/&gt;
+  			&lt;property name=&quot;url&quot; value=&quot;${jdbc.url}&quot;/&gt;
+  			&lt;property name=&quot;username&quot; value=&quot;${jdbc.username}&quot;/&gt;
+  			&lt;property name=&quot;password&quot; value=&quot;${jdbc.password}&quot;/&gt;
+  		&lt;/dataSource&gt;
+  	&lt;/environment&gt;
+  &lt;/environments&gt;
+
+  &lt;mappers&gt;
+  	&lt;mapper resource=&quot;com/xtkj/mapper/IProductMapper.xml&quot;/&gt;
+  	&lt;mapper resource=&quot;com/xtkj/mapper/ITypeMapper.xml&quot;/&gt;
+  &lt;/mappers&gt;
+</code></pre>
+  </configuration>
+</li>
+<li>
+<p>Mybatis映射文件：主要定义SQL映射，指导Mybatis框架对数据库的CRUD</p>
+</li>
+</ul>
+<p>mybatis两个重要的配置文件</p>
+<p>mybatis-config.xml ：全局配置文件，数据库链接信息，引入SQL映射文件</p>
+<p>mapper.xml ：SQL映射文件，配置增删改查的sql语句的映射</p>
+<p>两个重要对象</p>
+<p>SqlSessionFactory:SqlSession工厂对象，获取SQLSession</p>
+<p>SqlSession:Java程序与数据库的会话对象</p>
+<p>两个绑定</p>
+<p>mapper接口与映射文件的绑定，映射文件的namespace指定为接口的全类名</p>
+<p>mapper接口方法与sql映射文件具体语句的绑定，sql语句的id值为接口语句的方法名</p>
+<p>mapper接口开发的好处：</p>
+<ul>
+<li>有更明确的类型约束</li>
+<li>接口本身就是一个抽象，抽出了规范</li>
+</ul>
+<h3 id="参数传递的方式">参数传递的方式</h3>
+<ul>
+<li>单个参数</li>
+<li>多个参数</li>
+<li>命名参数</li>
+<li>POJO</li>
+<li>Map:取值使用封装map对自己指定的key</li>
+<li>Collection/Array:会被Mybatis封装成一个map传入,Collection对应的key是Collection,Array对应的key是array如果确定是list集合,key还可以是list</li>
+</ul>
+<h3 id="参数获取的方式">参数获取的方式</h3>
+<p>mybatis默认将Java中null转换为other类型</p>
+<p>#{id}:获取参数的值，预编译到SQL中，安全</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi>i</mi><mi>d</mi></mrow><mo>:</mo><mi mathvariant="normal">获</mi><mi mathvariant="normal">取</mi><mi mathvariant="normal">参</mi><mi mathvariant="normal">数</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">值</mi><mi mathvariant="normal">拼</mi><mi mathvariant="normal">接</mi><mi mathvariant="normal">到</mi><mi>S</mi><mi>Q</mi><mi>L</mi><mi mathvariant="normal">中</mi><mo separator="true">,</mo><mi mathvariant="normal">不</mi><mi mathvariant="normal">安</mi><mi mathvariant="normal">全</mi><mi mathvariant="normal">，</mi><mi mathvariant="normal">有</mi><mi>S</mi><mi>Q</mi><mi>L</mi><mi mathvariant="normal">注</mi><mi mathvariant="normal">入</mi><mi mathvariant="normal">问</mi><mi mathvariant="normal">题</mi><mi mathvariant="normal">，</mi><mi mathvariant="normal">并</mi><mi mathvariant="normal">且</mi><mi mathvariant="normal">取</mi><mi mathvariant="normal">单</mi><mi mathvariant="normal">个</mi><mi mathvariant="normal">普</mi><mi mathvariant="normal">通</mi><mi mathvariant="normal">类</mi><mi mathvariant="normal">型</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">参</mi><mi mathvariant="normal">数</mi></mrow><annotation encoding="application/x-tex">{id}:获取参数的值拼接到SQL中,不安全，有SQL注入问题，并且取单个普通类型的参数</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">i</span><span class="mord mathdefault">d</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord cjk_fallback">获</span><span class="mord cjk_fallback">取</span><span class="mord cjk_fallback">参</span><span class="mord cjk_fallback">数</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">值</span><span class="mord cjk_fallback">拼</span><span class="mord cjk_fallback">接</span><span class="mord cjk_fallback">到</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault">Q</span><span class="mord mathdefault">L</span><span class="mord cjk_fallback">中</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord cjk_fallback">不</span><span class="mord cjk_fallback">安</span><span class="mord cjk_fallback">全</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">有</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault">Q</span><span class="mord mathdefault">L</span><span class="mord cjk_fallback">注</span><span class="mord cjk_fallback">入</span><span class="mord cjk_fallback">问</span><span class="mord cjk_fallback">题</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">并</span><span class="mord cjk_fallback">且</span><span class="mord cjk_fallback">取</span><span class="mord cjk_fallback">单</span><span class="mord cjk_fallback">个</span><span class="mord cjk_fallback">普</span><span class="mord cjk_fallback">通</span><span class="mord cjk_fallback">类</span><span class="mord cjk_fallback">型</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">参</span><span class="mord cjk_fallback">数</span></span></span></span>{}中不能随便写必须使用_parameter</p>
+<p>原则上能用#{}优先，若#{}不能解决，如原生jdbc不支持占位符时使用${}</p>
+<h3 id="resulttype结果集的封装类型">resultType:结果集的封装类型</h3>
+<p>查询多条数据返回一个Map使用</p>
+<ul>
+<li>自定义映射resultMap</li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
         <id>https://xie-zhiyan.github.io/post/hello-gridea/</id>
